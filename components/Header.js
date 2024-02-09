@@ -38,16 +38,16 @@ const Header = () => {
                                         <Link className={location.pathname == '/' ? active : inactive} href="/"> Dashboard </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/products' ? active : inactive} href="/"> Products </Link>
+                                        <Link className={location.pathname == '/products' ? active : inactive} href="/products"> Products </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/categories' ? active : inactive} href="/"> Categories </Link>
+                                        <Link className={location.pathname == '/categories' ? active : inactive} href="/categories"> Categories </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/orders' ? active : inactive} href="/"> Orders </Link>
+                                        <Link className={location.pathname == '/orders' ? active : inactive} href="/orders"> Orders </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/settings' ? active : inactive} href="/"> Settings </Link>
+                                        <Link className={location.pathname == '/settings' ? active : inactive} href="/settings"> Settings </Link>
                                     </li>
 
 

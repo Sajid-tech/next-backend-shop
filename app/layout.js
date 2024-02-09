@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <>
-        <body className={robot.className}>
+        <body className={` px-4 ${robot.className}`}>
           <Provider>
             <Header />
             {children}
