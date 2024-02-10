@@ -12,12 +12,12 @@ const Header = () => {
     const router = useRouter()
     const { pathname } = router;
 
-    const active = "text-green-600 transition hover:text-green-500/75 p-3 bg-gray-200 rounded-md "
-    const inactive = "text-gray-500 transition hover:text-gray-500/75 p-3"
+    const active = 'text-green-600 transition hover:text-green-500/75 p-3 rounded-md bg-gray-200'
+    const inActive = 'text-gray-500 transition hover:text-gray-500/75 p-3'
 
 
     if (session) {
-        return (
+        return <>
             <header className="bg-white border-b-2 sticky top-0">
                 <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
@@ -35,19 +35,19 @@ const Header = () => {
                             <nav aria-label="Global" className="hidden md:block">
                                 <ul className="flex items-center gap-6 text-lg">
                                     <li>
-                                        <Link className={location.pathname == '/' ? active : inactive} href="/"> Dashboard </Link>
+                                        <Link className={pathname === '/' ? active : inActive} href="/"> Dashboard </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/products' ? active : inactive} href="/products"> Products </Link>
+                                        <Link className={pathname === '/products' ? active : inActive} href="/products"> Products </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/categories' ? active : inactive} href="/categories"> Categories </Link>
+                                        <Link className={pathname === '/categories' ? active : inActive} href="/categories"> Categories </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/orders' ? active : inactive} href="/orders"> Orders </Link>
+                                        <Link className={pathname === '/orders' ? active : inActive} href="/orders"> Orders </Link>
                                     </li>
                                     <li>
-                                        <Link className={location.pathname == '/settings' ? active : inactive} href="/settings"> Settings </Link>
+                                        <Link className={pathname === '/settings' ? active : inActive} href="/settings"> Settings </Link>
                                     </li>
 
 
@@ -87,7 +87,7 @@ const Header = () => {
                     </div>
                 </div>
             </header>
-        )
+        </>
     }
 }
 

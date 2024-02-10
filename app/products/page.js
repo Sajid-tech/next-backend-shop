@@ -14,7 +14,7 @@ const Products = () => {
 
                     <div className="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
                         <Link
-                            href={'/products'}
+                            href={'/products/createProd'}
                             className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-green-500 bg-white px-5 py-3 text-green-500 transition hover:text-orange-700 hover:border-orange-500 focus:outline-none focus:ring"
                             type="button"
                         >
