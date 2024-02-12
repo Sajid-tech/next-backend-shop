@@ -1,19 +1,37 @@
-
+"use client"
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 const Product = () => {
 
     const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [price, setPrice] = useState('')
+    const [images, setImages] = useState([])
+    const router = useRouter()
+
+    // send the data to db 
+    const createProduct = async () => {
+        const data = { title, description, price };
+        await axios.post('/api/products', data)
+    }
+
     return <>
 
-        <div className='mx-auto max-w-screen-sm'>
-
+        <form onSubmit={createProduct} className='mx-auto max-w-screen-sm'>
+            {/* Title  */}
             <div className='mx-auto my-4'>
                 <div>
                     <label htmlFor="example1" className="mb-1 block text-lg font-medium text-gray-700 py-1">Title</label>
-                    <input type="text" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3" placeholder="Product Title" />
+                    <input type="text" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3"
+                        placeholder="Product Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </div>
             </div>
+            {/* Select Category  */}
             <div className='mx-auto my-4'>
                 <div>
                     <label htmlFor="example1" className="mb-1 block text-lg font-medium text-gray-700 py-1">Select Category</label>
@@ -44,20 +62,30 @@ const Product = () => {
                     </label>
                 </div>
 
+                {/* Description  */}
 
             </div>
             <div className='mx-auto my-4'>
                 <div>
                     <label htmlFor="example1" className="mb-1 block text-lg font-medium text-gray-700 py-1">Description</label>
-                    <textarea rows={5} type="text" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3" placeholder=" Product Description" />
+                    <textarea rows={5} type="text" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3" placeholder=" Product Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </div>
             </div>
+
+            {/* Price  */}
             <div className='mx-auto my-4'>
                 <div>
                     <label htmlFor="example1" className="mb-1 block text-lg font-medium text-gray-700 py-1">Price</label>
-                    <input type="number" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3" placeholder="Product Price" />
+                    <input type="number" id="example1" className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 p-3" placeholder="Product Price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
                 </div>
             </div>
+
             {/* upload button */}
             <div className='mx-auto my-4'>
                 <button className="group relative inline-block focus:outline-none focus:ring w-full" type='submit'>
@@ -75,7 +103,7 @@ const Product = () => {
 
 
 
-        </div>
+        </form>
     </>
 }
 
