@@ -5,6 +5,8 @@ import axios from 'axios'
 
 const Product = () => {
 
+    const [redirect, setRedirect] = useState(false)
+
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
@@ -12,9 +14,19 @@ const Product = () => {
     const router = useRouter()
 
     // send the data to db 
-    const createProduct = async () => {
+    async function createProduct(e) {
+        e.preventDefault();
+
         const data = { title, description, price };
-        await axios.post('/api/products', data)
+        await axios.post('http://localhost:3000/api/products', data)
+        setRedirect(true);
+
+
+    }
+
+    if (redirect) {
+        router.push('/products')
+        return null
     }
 
     return <>
