@@ -18,7 +18,8 @@ const Product = () => {
         e.preventDefault();
 
         const data = { title, description, price };
-        await axios.post('http://localhost:3000/api/products', data)
+        await axios.post('/api/products', data)
+        console.log(data)
         setRedirect(true);
 
 
