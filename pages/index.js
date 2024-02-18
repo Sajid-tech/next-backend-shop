@@ -1,9 +1,8 @@
 "use client"
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from "next/link"
+
 export default function Home() {
-
-
   const { data: session } = useSession()
   if (session) {
     return (
@@ -86,7 +85,5 @@ export default function Home() {
         Sign In With Google
       </button>
     </div>
-
   </>
-
 }

@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
+import { ReactSortable } from 'react-sortablejs'
+import Image from 'next/image'
+import Spinner from './Spinner'
+
 const Product = () => {
 
     const [redirect, setRedirect] = useState(false)
@@ -11,23 +15,79 @@ const Product = () => {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [images, setImages] = useState([])
+
+    const [isUploading, setIsUploading] = useState(false)
+
+    const uploadImagesQueue = []
     const router = useRouter()
 
     // send the data to db 
     async function createProduct(e) {
         e.preventDefault();
 
-        const data = { title, description, price };
+
+        // Check if there are new images to upload
+        if (isUploading) {
+            // Wait for the images to finish uploading
+            await Promise.all(uploadImagesQueue)
+        }
+        // Now you can make the API request to save the product
+        const data = { title, description, price, images };
         await axios.post('/api/products', data)
         console.log(data)
+
+
+        // Redirect after saving
         setRedirect(true);
 
 
     }
+    // upload image function
 
+    async function uploadImages(e) {
+        const files = e.target?.files;
+        if (files?.length > 0) {
+            setIsUploading(true);
+
+            for (const file of files) {
+                const data = new FormData();
+                data.append('file', file);
+
+
+                // Use the axios.post method and push the promise to the queue
+                try {
+
+                } catch (error) {
+
+                }
+                uploadImagesQueue.push(
+                    axios.post('/api/upload', data)
+                        .then(res => {
+                            setImages(oldImages => [...oldImages, ...res.data.links]);
+                        })
+                );
+            }
+
+            // Wait for all images to finish uploading
+            await Promise.all(uploadImagesQueue)
+            setIsUploading(false)
+        } else {
+            return ('An Error Occured')
+        }
+    }
+
+
+
+    // after send the data of product it will redirect to products section
     if (redirect) {
         router.push('/products')
         return null
+    }
+
+
+    function updateImageOrder(Images) {
+        setImages(Images)
+        console.log(Images)
     }
 
     return <>
@@ -71,13 +131,48 @@ const Product = () => {
                             <div className="text-gray-600"><a href="#" className="font-medium text-primary-500 hover:text-primary-700">Click to upload</a> or drag and drop</div>
                             <p className="text-sm text-gray-500">SVG, PNG, JPG or GIF (max. 800x400px)</p>
                         </div>
-                        <input id="example5" type="file" className="sr-only" />
+                        <input id="fileInput" type="file" className="hidden" accept='image/*'
+                            multiple onChange={uploadImages}
+                        />
                     </label>
                 </div>
 
-                {/* Description  */}
 
             </div>
+
+            {/* React Spinner during upload */}
+            <div className="grid grid-cols-2 items-center rounded">
+
+                {isUploading && (
+                    <Spinner className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                )}
+            </div>
+
+            {/* Display uploaded images */}
+
+
+            {!isUploading && (
+                <div className='grid grid-cols-2 gap-4'>
+                    <ReactSortable
+                        list={Array.isArray(images) ? images : []}
+                        setList={updateImageOrder}
+                        animation={200}
+                        className='grid grid-cols-2 gap-4'
+                    >
+                        {Array.isArray(images) && images.map((link, index) => (
+                            <div key={link} className='relative group'>
+                                <img src={link} alt='image' className='object-cover h-32 w-44 rounded-md p-2'
+
+                                />
+
+                            </div>
+                        ))}
+                    </ReactSortable>
+                </div>
+            )}
+
+
+            {/* Description  */}
             <div className='mx-auto my-4'>
                 <div>
                     <label htmlFor="example1" className="mb-1 block text-lg font-medium text-gray-700 py-1">Description</label>
