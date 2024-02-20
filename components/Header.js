@@ -5,12 +5,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
+
 const Header = () => {
 
     const { data: session } = useSession()
 
+
+
     const router = useRouter()
     const { pathname } = router;
+
 
     const active = 'text-green-600 transition hover:text-green-500/75 p-3 rounded-md bg-gray-200'
     const inActive = 'text-gray-500 transition hover:text-gray-500/75 p-3'
@@ -35,19 +39,19 @@ const Header = () => {
                             <nav aria-label="Global" className="hidden md:block">
                                 <ul className="flex items-center gap-6 text-lg">
                                     <li>
-                                        <Link className={pathname === '/' ? active : inActive} href="/"> Dashboard </Link>
+                                        <Link className={location.pathname === '/' ? active : inActive} href="/"> Dashboard </Link>
                                     </li>
                                     <li>
-                                        <Link className={pathname === '/products' ? active : inActive} href="/products"> Products </Link>
+                                        <Link className={location.pathname === '/products' ? active : inActive} href="/products"> Products </Link>
                                     </li>
                                     <li>
-                                        <Link className={pathname === '/categories' ? active : inActive} href="/categories"> Categories </Link>
+                                        <Link className={location.pathname === '/categories' ? active : inActive} href="/categories"> Categories </Link>
                                     </li>
                                     <li>
-                                        <Link className={pathname === '/orders' ? active : inActive} href="/orders"> Orders </Link>
+                                        <Link className={location.pathname === '/orders' ? active : inActive} href="/orders"> Orders </Link>
                                     </li>
                                     <li>
-                                        <Link className={pathname === '/settings' ? active : inActive} href="/settings"> Settings </Link>
+                                        <Link className={location.pathname === '/settings' ? active : inActive} href="/settings"> Settings </Link>
                                     </li>
 
 

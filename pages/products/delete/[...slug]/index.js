@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 
 
@@ -19,6 +20,7 @@ export default function DeleteProduct() {
         }
         axios.get('/api/products?id=' + slug).then(response => {
             setProductInfo(response.data)
+
         })
     }, [slug])
 
@@ -28,6 +30,7 @@ export default function DeleteProduct() {
 
     const deleteProduct = async () => {
         await axios.delete('/api/products?id=' + slug);
+        toast.success('Product Deleted ')
         goBack()
     }
     return <>

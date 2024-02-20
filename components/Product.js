@@ -6,6 +6,7 @@ import axios from 'axios'
 import { ReactSortable } from 'react-sortablejs'
 import Image from 'next/image'
 import Spinner from './Spinner'
+import toast from 'react-hot-toast'
 
 
 
@@ -47,8 +48,10 @@ const Product = ({
         // we checking , if we have a id than do that else post the product
         if (_id) {
             await axios.put('/api/products', { ...data, _id });
+            toast.success('Product Updated')
         } else {
             await axios.post('/api/products', data);
+            toast.success('Product Added')
         }
 
         console.log(data)
