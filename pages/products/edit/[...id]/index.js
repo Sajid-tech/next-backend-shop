@@ -1,7 +1,7 @@
 import Product from "@/components/Product";
 import axios from "axios";
-// import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
+
 import { useEffect, useState } from "react";
 
 
@@ -9,9 +9,8 @@ import { useEffect, useState } from "react";
 export default function EditProduct() {
 
     // first fetch the product info by id 
-    const params = useParams()
-    console.log(params)
-    const { id } = params
+    const router = useRouter();
+    const { id } = router.query;
     const [productInfo, setProductInfo] = useState(null);
 
     useEffect(() => {
