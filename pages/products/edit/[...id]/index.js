@@ -11,17 +11,17 @@ export default function EditProduct() {
     // first fetch the product info by id 
     const params = useParams()
     console.log(params)
-    const { slug } = params
+    const { id } = params
     const [productInfo, setProductInfo] = useState(null);
 
     useEffect(() => {
-        if (!slug) {
+        if (!id) {
             return;
         }
-        axios.get('/api/products?id=' + slug).then(response => {
+        axios.get('/api/products?id=' + id).then(response => {
             setProductInfo(response.data)
         })
-    }, [slug])
+    }, [id])
     return <>
         <div className="max-sm:p-4">
 

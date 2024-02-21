@@ -11,25 +11,25 @@ export default function DeleteProduct() {
     const router = useRouter()
     const params = useParams()
     console.log(params)
-    const { slug } = params || {}
+    const { id } = params || {}
     const [productInfo, setProductInfo] = useState(null);
 
     useEffect(() => {
-        if (!slug) {
+        if (!id) {
             return;
         }
-        axios.get('/api/products?id=' + slug).then(response => {
+        axios.get('/api/products?id=' + id).then(response => {
             setProductInfo(response.data)
 
         })
-    }, [slug])
+    }, [id])
 
     const goBack = () => {
         router.push('/products')
     }
 
     const deleteProduct = async () => {
-        await axios.delete('/api/products?id=' + slug);
+        await axios.delete('/api/products?id=' + id);
         toast.success('Product Deleted ')
         goBack()
     }
