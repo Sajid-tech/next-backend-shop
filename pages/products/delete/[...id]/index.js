@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -8,10 +8,8 @@ import toast from "react-hot-toast";
 
 export default function DeleteProduct() {
 
-    const router = useRouter()
-    const params = useParams()
-    console.log(params)
-    const { id } = params || {}
+    const router = useRouter();
+    const { id } = router.query;
     const [productInfo, setProductInfo] = useState(null);
 
     useEffect(() => {
