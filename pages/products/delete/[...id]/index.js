@@ -18,6 +18,7 @@ export default function DeleteProduct() {
         }
         axios.get('/api/products?id=' + id).then(response => {
             setProductInfo(response.data)
+            console.log("setProductInfo", response.data)
 
         })
     }, [id])

@@ -44,9 +44,9 @@ const Header = () => {
                                     <li>
                                         <Link className={location.pathname === '/products' ? active : inActive} href="/products"> Products </Link>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <Link className={location.pathname === '/categories' ? active : inActive} href="/categories"> Categories </Link>
-                                    </li>
+                                    </li> */}
                                     <li>
                                         <Link className={location.pathname === '/orders' ? active : inActive} href="/orders"> Orders </Link>
                                     </li>
