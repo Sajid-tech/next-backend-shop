@@ -22,7 +22,7 @@ export default function EditProduct() {
         })
     }, [id])
     return <>
-        <div className="max-sm:p-4">
+        <div className="max-sm:p-4 mt-6 lg:mt-0">
 
             <div className="sm:flex sm:items-center sm:justify-center">
                 <div className="text-center sm:text-left">

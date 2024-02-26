@@ -183,7 +183,7 @@ const Product = ({
                         list={Array.isArray(images) ? images : []}
                         setList={updateImageOrder}
                         animation={200}
-                        className='grid grid-cols-2 gap-4'
+                        className='grid grid-cols-2 gap-4 '
                     >
                         {Array.isArray(images) && images.map((link, index) => (
                             <div key={link} className='relative group'>

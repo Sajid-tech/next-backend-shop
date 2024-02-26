@@ -3,7 +3,7 @@ import React from 'react'
 
 const NewProduct = () => {
     return <>
-        <section className="p-4">
+        <section className="p-4 mt-6 lg:mt-0">
             <div className="sm:flex sm:items-center sm:justify-center">
                 <div className="text-center sm:text-left">
                     <p className="mt-1.5 text-lg text-red-500">

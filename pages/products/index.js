@@ -21,7 +21,7 @@ const Products = () => {
     })
 
     return <>
-        <header className="bg-gray-50">
+        <header className="bg-gray-50 mt-6 lg:mt-0">
             <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <div className="text-center sm:text-left">
@@ -50,14 +50,14 @@ const Products = () => {
             </div>
         </header>
 
-        <div className="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="overflow-x-auto mx-auto px-4">
 
             {products.length === 0 ? (
                 <p className='w-full text-center'>No Products Available</p>
             ) : (
 
                 <div className="">
-                    <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                    <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-md border rounded">
                         <thead className="bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">S.No</th>
@@ -68,7 +68,7 @@ const Products = () => {
                             </tr>
                         </thead>
                         {products.map((product, index) => (
-                            <tbody className="divide-y divide-gray-100 border-t border-gray-100" key={products._id}>
+                            <tbody className="divide-y divide-gray-200" key={products._id}>
                                 <tr>
                                     <th className="px-6 py-4 font-medium text-gray-900">{index + 1}</th>
                                     <td className="px-6 py-4">{product?.title}</td>

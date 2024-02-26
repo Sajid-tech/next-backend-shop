@@ -36,7 +36,7 @@ export default function DeleteOrder() {
 
     console.log("orderinfo", orderInfo)
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="min-h-screen mt-6 lg:mt-6 bg-gray-100 flex items-center justify-center">
             <div className="bg-white shadow-lg rounded-lg overflow-hidden md:max-w-md">
                 <div className="px-4 py-6 sm:px-6">
                     <div className="flex items-start justify-between">
